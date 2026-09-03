@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Sign up — step 1</title>
+<style>body{font-family:system-ui;max-width:420px;margin:40px auto}label{display:block;margin:12px 0 4px}input{width:100%;padding:8px;box-sizing:border-box}button{margin-top:16px;padding:10px 16px}</style>
+</head>
+<body>
+<h1>Create account</h1>
+<form id="step1" onsubmit="event.preventDefault(); document.getElementById('step1').hidden = true; document.getElementById('step2').hidden = false;">
+  <label for="email">Email</label>
+  <input id="email" name="email" type="email" autocomplete="email">
+  <button type="submit">Continue</button>
+</form>
+<form id="step2" hidden onsubmit="event.preventDefault()">
+  <label for="password">Password (min 12)</label>
+  <input id="password" name="password" type="password" minlength="12" autocomplete="new-password">
+  <label for="password2">Confirm password</label>
+  <input id="password2" name="password_confirm" type="password" autocomplete="new-password">
+  <button type="submit">Sign up</button>
+</form>
+</body>
+</html>

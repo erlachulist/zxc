@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Test Registration</title>
+<style>body{font-family:system-ui;max-width:420px;margin:40px auto}label{display:block;margin:12px 0 4px}input{width:100%;padding:8px;box-sizing:border-box}button{margin-top:16px;padding:10px 16px}</style>
+</head>
+<body>
+<h1>Create account</h1>
+<form id="reg" onsubmit="event.preventDefault()">
+  <label for="email">Email</label>
+  <input id="email" name="email" type="email" autocomplete="email">
+  <label for="confirm_email">Confirm email</label>
+  <input id="confirm_email" name="confirm_email" type="text">
+  <label for="password">Password</label>
+  <input id="password" name="password" type="password" autocomplete="new-password">
+  <button type="submit">Sign up</button>
+</form>
+</body>
+</html>
