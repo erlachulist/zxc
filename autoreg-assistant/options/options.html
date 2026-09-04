@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AutoReg Assistant — Настройки</title>
+    <link rel="stylesheet" href="../ui/theme.css" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="side">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>
+          </span>
+          <div>
+            <div class="brand-name">AutoReg</div>
+            <div class="brand-sub">Настройки</div>
+          </div>
+        </div>
+        <nav class="nav" id="nav">
+          <button class="nav-item active" data-tab="fill">Заполнение</button>
+          <button class="nav-item" data-tab="verify">Верификация</button>
+          <button class="nav-item" data-tab="reliability">Надёжность</button>
+          <button class="nav-item" data-tab="providers">Провайдеры</button>
+          <button class="nav-item" data-tab="security">Безопасность</button>
+          <button class="nav-item" data-tab="data">Данные</button>
+          <button class="nav-item" data-tab="stats">Статистика</button>
+        </nav>
+        <div class="side-foot">v3.0.0 · Manifest V3</div>
+      </aside>
+
+      <main class="main">
+        <!-- Заполнение -->
+        <section class="tab active" data-tab="fill">
+          <header class="tab-hd"><h1>Заполнение форм</h1><p>Что и как подставлять в поля регистрации.</p></header>
+          <div class="card group" id="grp-fill"></div>
+        </section>
+
+        <!-- Верификация -->
+        <section class="tab" data-tab="verify">
+          <header class="tab-hd"><h1>Верификация</h1><p>Опрос почты, коды и ссылки подтверждения.</p></header>
+          <div class="card group" id="grp-verify"></div>
+        </section>
+
+        <!-- Надёжность -->
+        <section class="tab" data-tab="reliability">
+          <header class="tab-hd"><h1>Надёжность</h1><p>Повторы при ошибках и стратегия выбора провайдера.</p></header>
+          <div class="card group" id="grp-reliability"></div>
+        </section>
+
+        <!-- Провайдеры -->
+        <section class="tab" data-tab="providers">
+          <header class="tab-hd"><h1>Провайдеры почты</h1><p>Встроенные сервисы временной почты и ваши собственные (JSON).</p></header>
+          <div id="provider-list" class="prov-list"></div>
+          <div class="card add-prov">
+            <div class="eyebrow">Добавить свой провайдер (JSON)</div>
+            <p class="hint">Опишите API временной почты. Плейсхолдеры <code>{{token}}</code>, <code>{{apiKey}}</code>, <code>{{email}}</code>. Пути ответа — через точку (<code>data.messages.0.id</code>). Ключ API можно указать прямо в поле <code>apiKey</code> конфига.</p>
+            <textarea id="custom-json" class="textarea mono" spellcheck="false" rows="12"></textarea>
+            <div class="row-actions">
+              <button id="btn-sample" class="btn btn-sm btn-ghost">Вставить пример</button>
+              <button id="btn-add-prov" class="btn btn-sm btn-primary">Добавить провайдера</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Безопасность -->
+        <section class="tab" data-tab="security">
+          <header class="tab-hd"><h1>Безопасность</h1><p>Необязательное шифрование паролей мастер-паролем (PBKDF2 + AES-GCM). Ключ живёт только в памяти расширения.</p></header>
+          <div class="card group" id="grp-security"></div>
+        </section>
+
+        <!-- Данные -->
+        <section class="tab" data-tab="data">
+          <header class="tab-hd"><h1>Данные</h1><p>Экспорт журнала и очистка.</p></header>
+          <div class="card group">
+            <div class="line">
+              <div class="line-txt"><div class="line-title">Экспорт JSON</div><div class="line-sub">Полный журнал записей.</div></div>
+              <button id="exp-json" class="btn btn-sm">Скачать</button>
+            </div>
+            <div class="line">
+              <div class="line-txt"><div class="line-title">Экспорт для KeePass (CSV)</div><div class="line-sub">Group, Title, Username, Password, URL, Notes. Требует разблокировки, если пароли зашифрованы.</div></div>
+              <button id="exp-keepass" class="btn btn-sm">Скачать CSV</button>
+            </div>
+            <div class="line">
+              <div class="line-txt"><div class="line-title">Очистить журнал</div><div class="line-sub">Удаляет все записи без возможности восстановления.</div></div>
+              <button id="clear-all" class="btn btn-sm btn-danger">Очистить</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Статистика -->
+        <section class="tab" data-tab="stats">
+          <header class="tab-hd"><h1>Статистика</h1><p>Сводка по вашим регистрациям.</p></header>
+          <div id="stats" class="stats"></div>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="options.js" defer></script>
+  </body>
+</html>

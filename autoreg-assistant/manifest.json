@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "AutoReg Assistant",
+  "version": "3.1.0",
+  "description": "Быстрая регистрация на сайтах: временные email (несколько провайдеров + кастомные), автозаполнение форм в том числе многошаговых, автопроверка почты (OTP и ссылки), журнал регистраций с входом сохранёнными данными и шифрование паролей. Данные хранятся локально.",
+  "minimum_chrome_version": "120",
+  "permissions": ["storage", "notifications", "contextMenus", "tabs", "scripting", "alarms"],
+  "host_permissions": ["https://*/*", "http://*/*"],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "core/form-filler.js",
+        "core/error-classifier.js",
+        "core/password-generator.js",
+        "content/otp-autofill.js",
+        "content/page-banner.js",
+        "content/inline-button.js"
+      ],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ],
+  "commands": {
+    "fill-form": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "Command+Shift+F"
+      },
+      "description": "AutoReg: заполнить форму на активной вкладке"
+    }
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "AutoReg Assistant",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

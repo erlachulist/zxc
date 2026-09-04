@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AutoReg Assistant</title>
+    <link rel="stylesheet" href="../ui/theme.css" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div id="app" class="app">
+      <!-- Шапка -->
+      <header class="hd">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>
+          </span>
+          <div class="brand-txt">
+            <div class="brand-name">AutoReg</div>
+            <div class="brand-sub" id="brand-sub">Ассистент регистраций</div>
+          </div>
+        </div>
+        <button id="btn-settings" class="icon-btn" title="Настройки">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+      </header>
+
+      <!-- Экран списка -->
+      <section id="view-list" class="view">
+        <div class="actions">
+          <button id="btn-fill" class="btn btn-primary act-main">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>
+            Заполнить форму
+          </button>
+          <button id="btn-gen" class="btn act-side" title="Создать временный email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+            Email
+          </button>
+        </div>
+        <div id="ctx" class="ctx"></div>
+
+        <!-- Провайдер (компактно, как select-строка) -->
+        <div class="prov-line">
+          <span class="eyebrow">Провайдер</span>
+          <select id="provider-select" class="select"></select>
+        </div>
+
+        <!-- Текущий email (удобство v1: почта и письма сразу на виду) -->
+        <section id="current-box" class="current card" hidden></section>
+
+        <div class="list-hd">
+          <span class="eyebrow">Журнал</span>
+          <span id="count" class="count">0</span>
+        </div>
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="search" class="input" type="text" placeholder="Поиск по сайту или email…" />
+        </div>
+
+        <div id="list" class="list"></div>
+
+        <footer class="ft">
+          <button id="btn-export" class="btn btn-ghost btn-sm">Экспорт JSON</button>
+          <button id="btn-options" class="btn btn-ghost btn-sm">Все настройки →</button>
+        </footer>
+      </section>
+
+      <!-- Экран деталей -->
+      <section id="view-detail" class="view hidden"></section>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="popup.js" defer></script>
+  </body>
+</html>
